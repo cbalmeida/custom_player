@@ -1,0 +1,27 @@
+{
+  "external_urls": {
+    "spotify": "teste_spotify"
+  },
+  "followers": {
+    "href": "teste_href",
+    "total": 10
+  },
+  "genres": ["genre0", "genre1"],
+  "href": "teste_href",
+  "id": "teste_id",
+  "images": [
+    {
+      "url": "teste_images0",
+      "height": 1,
+      "width": 2
+    },
+    {
+      "url": "teste_images1",
+      "height": 3,
+      "width": 4
+    }
+  ],
+  "name": "teste_name",
+  "popularity": 10,
+  "uri": "teste_uri"
+}
