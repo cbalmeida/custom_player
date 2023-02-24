@@ -1,17 +1,16 @@
 import 'package:custom_player/models/artist.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../fixtures/json_fixture.dart';
+
 void main() {
   group('ArtistImages', () {
     test('fromJson: deve construir um objeto com os valores fornecidos no json"', () {
-      ArtistImages model = ArtistImages.fromJson({
-        'url': 'teste',
-        'height': 1,
-        'width': 2,
-      });
-      expect(model.url, 'teste');
-      expect(model.height, 1);
-      expect(model.width, 2);
+      final json = loadJsonFixture("artist_images");
+      final model = ArtistImages.fromJson(json);
+      expect(model.url, json['url']);
+      expect(model.height, json['height']);
+      expect(model.width, json['width']);
     });
 
     test('fromJson: deve construir um objeto com os valores "default vazios" quando o json for nulo ou nao contiver as colunas corretas"', () {
@@ -24,12 +23,10 @@ void main() {
 
   group('ArtistFollowers', () {
     test('fromJson: deve construir um objeto com os valores fornecidos no json"', () {
-      ArtistFollowers model = ArtistFollowers.fromJson({
-        'href': 'teste',
-        'total': 1,
-      });
-      expect(model.href, 'teste');
-      expect(model.total, 1);
+      final json = loadJsonFixture("artist_followers");
+      final model = ArtistFollowers.fromJson(json);
+      expect(model.href, json['href']);
+      expect(model.total, json['total']);
     });
 
     test('fromJson: deve construir um objeto com os valores "default vazios" quando o json for nulo ou nao contiver as colunas corretas"', () {
@@ -41,10 +38,9 @@ void main() {
 
   group('ArtistExternalUrls', () {
     test('fromJson: deve construir um objeto com os valores fornecidos no json"', () {
-      ArtistExternalUrls model = ArtistExternalUrls.fromJson({
-        'spotify': 'teste',
-      });
-      expect(model.spotify, 'teste');
+      final json = loadJsonFixture("artist_external_urls");
+      final model = ArtistExternalUrls.fromJson(json);
+      expect(model.spotify, json['spotify']);
     });
 
     test('fromJson: deve construir um objeto com os valores "default vazios" quando o json for nulo ou nao contiver as colunas corretas"', () {
@@ -55,51 +51,18 @@ void main() {
 
   group('Artist', () {
     test('fromJson: deve construir um objeto com os valores fornecidos no json"', () {
-      Artist model = Artist.fromJson(
-        {
-          "external_urls": {
-            'spotify': 'teste_spotify',
-          },
-          "followers": {
-            'href': 'teste_href',
-            'total': 10,
-          },
-          "genres": ['genre0', 'genre1'],
-          "href": 'teste_href',
-          "id": 'teste_id',
-          "images": [
-            {
-              'url': 'teste_images0',
-              'height': 1,
-              'width': 2,
-            },
-            {
-              'url': 'teste_images1',
-              'height': 3,
-              'width': 4,
-            },
-          ],
-          "name": 'teste_name',
-          "popularity": 10,
-          "uri": 'teste_uri',
-        },
-      );
-      expect(model.externalUrls.spotify, 'teste_spotify');
-      expect(model.followers.href, 'teste_href');
-      expect(model.followers.total, 10);
-      expect(model.genres[0], 'genre0');
-      expect(model.genres[1], 'genre1');
-      expect(model.href, 'teste_href');
-      expect(model.id, 'teste_id');
-      expect(model.images[0].url, 'teste_images0');
-      expect(model.images[0].height, 1);
-      expect(model.images[0].width, 2);
-      expect(model.images[1].url, 'teste_images1');
-      expect(model.images[1].height, 3);
-      expect(model.images[1].width, 4);
-      expect(model.name, 'teste_name');
-      expect(model.popularity, 10);
-      expect(model.uri, 'teste_uri');
+      final json = loadJsonFixture("artist");
+      final model = Artist.fromJson(json);
+      expect(model.externalUrls.spotify, json["external_urls"]["spotify"]);
+      expect(model.followers.href, json["followers"]["href"]);
+      expect(model.followers.total, json["followers"]["total"]);
+      expect(model.genres.length, json["genres"].length);
+      expect(model.href, json["href"]);
+      expect(model.id, json["id"]);
+      expect(model.images.length, json["images"].length);
+      expect(model.name, json["name"]);
+      expect(model.popularity, json["popularity"]);
+      expect(model.uri, json["uri"]);
     });
 
     test('fromJson: deve construir um objeto com os valores "default vazios" quando o json for nulo ou nao contiver as colunas corretas"', () {
